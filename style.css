@@ -1082,3 +1082,14 @@ a {
   .nav-item.open .mega-menu { display: grid; }
   .mega-feature { grid-column: 1 / -1; min-height: 150px; }
 }
+
+/* Start the carousel only after its duplicate cards are ready */
+.hero-track:not(.is-looping) { animation: none; }
+.hero-track.is-looping { animation: hero-film-drift 30s linear infinite; }
+@media (max-width:700px) {
+  .hero-track.is-looping { gap: 8px; animation-duration: 30s; animation-iteration-count: infinite; }
+  .hero-shot { flex-basis: clamp(190px, 20vw, 270px); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-track.is-looping { animation: none; }
+}

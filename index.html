@@ -236,6 +236,7 @@
         if (image) { image.alt = ''; image.loading = 'lazy'; }
         heroTrack.append(copy);
       });
+      if (heroTrack) heroTrack.classList.add('is-looping');
       const workNavItem = document.querySelector('#workNavItem');
       const workNavButton = workNavItem?.querySelector('.nav-trigger');
       workNavButton?.addEventListener('click', () => {
@@ -259,6 +260,8 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+
 
 
 
