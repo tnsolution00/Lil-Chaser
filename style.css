@@ -34,7 +34,7 @@ a {
   text-transform: uppercase;
 }
 .shell {
-  min-height: 100svh;
+  min-height: 0;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -918,7 +918,7 @@ a {
 .hero-shot:hover img { transform:scale(1.07); }
 .hero-gallery .visual-label { z-index:2; color:#ffffff; }
 @keyframes hero-film-drift { to { transform:translateX(calc(-50% - 4px)); } }
-@media (max-width:700px) { .hero-gallery { width:100vw; height:clamp(170px,52vw,280px); } .hero-track { gap:5px; } .hero-shot { flex-basis:clamp(150px,48vw,220px); } }
+@media (max-width:700px) { .hero-gallery { width:min(1130px,86vw); height:clamp(180px,30vw,390px); } .hero-track { gap:8px; animation-duration:30s; } .hero-shot { flex-basis:clamp(190px,20vw,270px); } }
 @media (prefers-reduced-motion:reduce) { .hero-track { animation:none; } }
 /* Floating glass navigation */
 .top {
@@ -980,3 +980,105 @@ a {
   .topnav > a { padding:10px 0; }
 }
 @media (prefers-reduced-motion:reduce) { .mega-menu { transition:none; } }
+
+
+
+
+
+/* Restore the navbar's original in-flow placement and plain styling */
+.top {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: auto;
+  min-height: 0;
+  height: 82px;
+  padding: 0 4.4vw;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  z-index: 5;
+}
+@media (max-width:700px) {
+  .top { top:auto; left:auto; transform:none; width:auto; height:72px; min-height:0; padding:0 22px; border:0; border-radius:0; background:transparent; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; }
+}
+
+/* Keep the mobile film strip identical to desktop and loop at the clone seam */
+.hero-track { gap: 8px; animation: hero-film-drift 30s linear infinite; }
+.hero-shot { flex-basis: clamp(190px, 20vw, 270px); }
+@keyframes hero-film-drift { to { transform: translateX(calc(-50% - 4px)); } }
+@media (max-width:700px) {
+  .hero-gallery { width: min(1130px, 86vw); height: clamp(180px, 30vw, 390px); }
+  .hero-track { gap: 8px; animation-duration: 30s; animation-iteration-count: infinite; }
+  .hero-shot { flex-basis: clamp(190px, 20vw, 270px); }
+}
+
+
+/* Floating glass navigation with a nav-width mega menu */
+.top {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1120px, calc(100% - 40px));
+  height: 76px;
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,.17);
+  border-radius: 22px;
+  background: rgba(12,12,12,.64);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+  box-shadow: 0 14px 44px rgba(0,0,0,.28);
+  z-index: 50;
+}
+.topnav { gap: clamp(18px, 3vw, 42px); }
+.nav-item { position: static; }
+.mega-menu {
+  left: 0;
+  right: 0;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(210px, 1.15fr);
+}
+@media (max-width:700px) {
+  .top {
+    top: 12px;
+    left: 12px;
+    transform: none;
+    width: calc(100% - 24px);
+    height: 60px;
+    padding: 8px;
+    border-radius: 18px;
+  }
+  .topnav {
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    max-height: calc(100svh - 100px);
+    overflow: auto;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 18px;
+    background: rgba(12,12,12,.94);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+  .mega-menu {
+    position: static;
+    width: 100%;
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 14px;
+    margin: 4px 0 10px;
+    border-radius: 14px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .nav-item.open .mega-menu { display: grid; }
+  .mega-feature { grid-column: 1 / -1; min-height: 150px; }
+}
