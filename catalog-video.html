@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08090a" />
+    <title>Videography — LIL CHASER</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .catalog-page {
+        min-height: 100svh;
+        background: #0a0b0c;
+      }
+      .catalog-page .section {
+        min-height: calc(100svh - 82px);
+      }
+      .video-frame {
+        width: min(100%, 1000px);
+        aspect-ratio: 16/9;
+        background: #111416;
+        border: 1px solid #e7cb8b55;
+        margin: 30px 0;
+      }
+      .video-frame video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #050606;
+      }
+      .video-note {
+        font:
+          10px "DM Mono",
+          monospace;
+        color: #aaa9a3;
+      }
+      .video-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+        gap: 20px;
+        margin-top: 34px;
+      }
+      .video-item {
+        background: #111416;
+        border: 1px solid #ffffff19;
+        padding: 18px;
+      }
+      .video-item h3 {
+        font:
+          22px "Playfair Display",
+          serif;
+        margin: 0 0 14px;
+      }
+      .video-item video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #050606;
+      }
+      .video-hint {
+        color: #aaa9a3;
+        font-size: 12px;
+        line-height: 1.7;
+        margin: 10px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="catalog-page">
+      <header class="top">
+        <a href="index.html#home" class="brand"
+          >LIL CHASER<small>OFFICIAL · 2026</small></a
+        >
+        <nav class="topnav" id="nav">
+          <a href="index.html#catalogue">Explore Work</a
+          ><a href="index.html#about">About</a
+          ><a href="index.html#contact">Contact</a>
+        </nav>
+        <button
+          class="menu"
+          id="menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </header>
+      <section class="section">
+        <a class="explore" href="index.html#catalogue"
+          ><span>←</span> Back to catalogue</a
+        >
+        <div class="eyebrow">CATEGORY 04 / CAMERA & PRODUCTION</div>
+        <h2>Videography</h2>
+        <p>Cinematic camera work capturing people, places and moments.</p>
+        <h3>Videos</h3>
+        <p>
+          Add your video files in VS Code under <code>videos/video/</code>, then
+          update the filenames below if needed.
+        </p>
+        <div class="video-list">
+          <article class="video-item">
+            <h3>PRINTING AND ARTS</h3>
+            <video controls playsinline preload="metadata">
+              <source src="videos/video/video-1.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <p class="video-hint">
+              
+            </p>
+          </article>
+          <article class="video-item">
+            <h3>EDUCATIONAL SPRIT</h3>
+            <video controls playsinline preload="metadata">
+              <source src="videos/video/video-2.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <p class="video-hint">
+             
+            </p>
+          </article>
+          <article class="video-item">
+            <h3>ACT OF DICIPLINE</h3>
+            <video controls playsinline preload="metadata">
+              <source src="videos/video/video-3.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <p class="video-hint">
+              
+            </p>
+          </article>
+        </div>
+        <a
+          href="mailto:hello@lilchaser.com?subject=Videography%20Enquiry"
+          class="contact"
+          >Enquire about this category ↗</a
+        >
+      </section>
+    </main>
+    <footer class="footer">
+      <span>LIL CHASER · OFFICIAL</span><span>TN SOLUTION</span
+      ><span>© 2026</span>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

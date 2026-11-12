@@ -1,0 +1,23 @@
+LIL CHASER SITE — SETUP AND VIDEO GUIDE
+
+FILES
+- index.html is the home page.
+- catalog-film.html, catalog-commercial.html, catalog-acting.html, catalog-video.html, catalog-content.html are separate catalogue pages.
+- style.css contains the shared styles; script.js contains navigation and filtering. Keep these files together in one folder.
+
+OPEN THE SITE
+1. Extract the ZIP.
+2. In VS Code, choose File > Open Folder and select the extracted folder.
+3. Open index.html in a browser (or use VS Code Live Server).
+4. Click any catalogue card or its Open Catalogue button.
+
+ADD A VIDEO
+1. In VS Code Explorer, open videos, then the relevant category folder: film, commercial, acting, video, or content.
+2. Drag an MP4 file from File Explorer into that folder.
+3. Use one of the player filenames: video-1.mp4, video-2.mp4, or video-3.mp4.
+4. Refresh the catalogue page and press play.
+
+Example: videos/film/video-1.mp4 appears in catalog-film.html.
+
+ADD MORE VIDEOS
+In the matching catalog-*.html file, copy a video-item block and change its title and source path to the next filename, such as videos/film/video-4.mp4.
