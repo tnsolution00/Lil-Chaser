@@ -229,14 +229,24 @@
     </footer>
     <script>
       const heroTrack = document.querySelector('.hero-track');
-      if (heroTrack) [...heroTrack.children].forEach((shot) => {
-        const copy = shot.cloneNode(true);
-        copy.setAttribute('aria-hidden', 'true');
-        const image = copy.querySelector('img');
-        if (image) { image.alt = ''; image.loading = 'lazy'; }
-        heroTrack.append(copy);
-      });
-      if (heroTrack) heroTrack.classList.add('is-looping');
+      if (heroTrack) {
+        const originalShots = [...heroTrack.children];
+        originalShots.forEach((shot) => {
+          const originalImage = shot.querySelector('img');
+          if (originalImage) originalImage.loading = 'eager';
+          const copy = shot.cloneNode(true);
+          copy.setAttribute('aria-hidden', 'true');
+          const image = copy.querySelector('img');
+          if (image) { image.alt = ''; image.loading = 'eager'; }
+          heroTrack.append(copy);
+        });
+        requestAnimationFrame(() => {
+          const firstDuplicate = heroTrack.children[originalShots.length];
+          if (!firstDuplicate) return;
+          heroTrack.style.setProperty('--loop-distance', `-${firstDuplicate.offsetLeft}px`);
+          heroTrack.classList.add('is-looping');
+        });
+      }
       const workNavItem = document.querySelector('#workNavItem');
       const workNavButton = workNavItem?.querySelector('.nav-trigger');
       workNavButton?.addEventListener('click', () => {
@@ -260,6 +270,8 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+
 
 
 

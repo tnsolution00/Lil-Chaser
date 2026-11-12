@@ -1093,3 +1093,17 @@ a {
 @media (prefers-reduced-motion:reduce) {
   .hero-track.is-looping { animation: none; }
 }
+
+/* Use the measured duplicate seam so the hero strip never drifts into empty space */
+@keyframes hero-film-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(var(--loop-distance, -50%)); }
+}
+.hero-track:not(.is-looping) { animation: none; }
+.hero-track.is-looping { animation: hero-film-drift 30s linear infinite; }
+@media (max-width:700px) {
+  .hero-gallery { width: min(1130px, 86vw); height: clamp(180px, 30vw, 390px); }
+  .hero-track.is-looping { gap: 8px; animation-duration: 30s; animation-iteration-count: infinite; }
+  .hero-shot { flex-basis: clamp(190px, 20vw, 270px); }
+}
+@media (prefers-reduced-motion:reduce) { .hero-track.is-looping { animation: none; } }
