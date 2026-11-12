@@ -920,3 +920,63 @@ a {
 @keyframes hero-film-drift { to { transform:translateX(calc(-50% - 4px)); } }
 @media (max-width:700px) { .hero-gallery { width:100vw; height:clamp(170px,52vw,280px); } .hero-track { gap:5px; } .hero-shot { flex-basis:clamp(150px,48vw,220px); } }
 @media (prefers-reduced-motion:reduce) { .hero-track { animation:none; } }
+/* Floating glass navigation */
+.top {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1120px, calc(100% - 40px));
+  height: 76px;
+  padding: 8px 22px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 22px;
+  background: rgba(12,12,12,.64);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+  box-shadow: 0 14px 44px rgba(0,0,0,.28);
+  z-index: 30;
+}
+.topnav { gap: clamp(18px, 3vw, 42px); }
+.nav-item { position: static; display: flex; align-items: center; }
+.nav-trigger {
+  border: 0; padding: 12px 0; color: #fff; background: none; cursor: pointer;
+  font: 10px "DM Mono", monospace; letter-spacing: 1px; text-transform: uppercase;
+}
+.nav-trigger::after { content: "+"; color: var(--gold); margin-left: 8px; }
+.nav-item.open .nav-trigger::after { content: "−"; }
+.mega-menu {
+  position: absolute; top: calc(100% + 10px); left: 0; width: 100%;
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr)) minmax(210px,1.15fr);
+  gap: 24px; padding: 28px; border: 1px solid rgba(255,255,255,.15);
+  border-radius: 20px; background: rgba(12,12,12,.91);
+  -webkit-backdrop-filter: blur(22px) saturate(145%); backdrop-filter: blur(22px) saturate(145%);
+  box-shadow: 0 24px 70px rgba(0,0,0,.46);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.nav-item.open .mega-menu, .nav-item:focus-within .mega-menu, .nav-item:hover .mega-menu {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.mega-column { display: grid; align-content: start; gap: 5px; }
+.mega-heading { margin: 0 0 12px; color: var(--gold); font: 9px "DM Mono",monospace; letter-spacing: 1.2px; text-transform: uppercase; }
+.mega-menu a { display:block; padding: 10px 12px; border-radius: 10px; color:#eee; text-decoration:none; font-size:13px; letter-spacing:0; text-transform:none; transition:background .2s,color .2s; }
+.mega-menu a:hover, .mega-menu a:focus-visible { color:#fff; background:rgba(255,255,255,.08); }
+.mega-feature { position:relative; min-height:190px; overflow:hidden; display:flex; flex-direction:column; justify-content:end; gap:8px; padding:18px; border:1px solid #e20d2655; border-radius:14px; background:radial-gradient(ellipse at 70% 25%,#e20d2670,transparent 35%),linear-gradient(145deg,#ffffff24,#101010 60%); text-decoration:none; }
+.mega-feature::before { content:"LC"; position:absolute; right:12px; top:-18px; color:#ffffff20; font:italic 100px "Playfair Display",serif; }
+.mega-feature > * { position:relative; }
+.mega-feature .eyebrow { color:var(--gold); }
+.mega-feature strong { max-width:220px; font:italic 24px "Playfair Display",serif; }
+.mega-feature span:last-child { color:#ddd; font-size:11px; line-height:1.5; }
+.topnav .mega-menu a { font-family:Manrope,Arial,sans-serif; }
+@media (max-width:700px) {
+  .top { top:12px; width:calc(100% - 24px); height:60px; padding:8px 16px; border-radius:18px; }
+  .topnav { top:calc(100% + 10px); left:0; right:0; max-height:calc(100svh - 100px); overflow:auto; gap:8px; padding:16px; border:1px solid rgba(255,255,255,.16); border-radius:18px; background:rgba(12,12,12,.94); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); }
+  .nav-item { width:100%; display:block; }
+  .nav-trigger { width:100%; text-align:left; }
+  .mega-menu { position:static; width:100%; display:none; grid-template-columns:1fr 1fr; gap:12px; padding:14px; margin:4px 0 10px; border-radius:14px; opacity:1; visibility:visible; transform:none; }
+  .nav-item.open .mega-menu { display:grid; }
+  .mega-feature { grid-column:1/-1; min-height:150px; }
+  .topnav > a { padding:10px 0; }
+}
+@media (prefers-reduced-motion:reduce) { .mega-menu { transition:none; } }

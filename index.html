@@ -12,14 +12,21 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="shell" id="home">
-      <header class="top">
+    <header class="top">
         <a href="#home" class="brand"
           >LIL CHASER<small>OFFICIAL · 2026</small></a
         >
         <nav class="topnav" id="nav">
-          <a href="#catalogue">Explore Work</a><a href="#about">About</a
-          ><a href="#contact">Contact</a>
+          <div class="nav-item" id="workNavItem">
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="workMegaMenu">Explore Work</button>
+            <div class="mega-menu" id="workMegaMenu" aria-label="Explore work categories">
+              <div class="mega-column"><p class="mega-heading">Stories on screen</p><a href="catalog-film.html">Short films</a><a href="catalog-acting.html">Acting & performance</a></div>
+              <div class="mega-column"><p class="mega-heading">For brands</p><a href="catalog-commercial.html">Video adverts</a><a href="#contact">Campaign production</a></div>
+              <div class="mega-column"><p class="mega-heading">Visual content</p><a href="catalog-video.html">Videography</a><a href="catalog-content.html">Content creation</a></div>
+              <a class="mega-feature" href="catalog-film.html"><span class="eyebrow">Featured · 01</span><strong>Stories in motion</strong><span>Explore selected film work and behind-the-scenes projects.</span></a>
+            </div>
+          </div>
+          <a href="#about">About</a><a href="#contact">Contact</a>
         </nav>
         <button
           class="menu"
@@ -30,6 +37,7 @@
           ☰
         </button>
       </header>
+    <main class="shell" id="home">
       <section class="hero">
         <div class="orbit"></div>
                 <div class="hero-gallery" aria-label="Film production stills">
@@ -228,7 +236,29 @@
         if (image) { image.alt = ''; image.loading = 'lazy'; }
         heroTrack.append(copy);
       });
+      const workNavItem = document.querySelector('#workNavItem');
+      const workNavButton = workNavItem?.querySelector('.nav-trigger');
+      workNavButton?.addEventListener('click', () => {
+        const open = workNavItem.classList.toggle('open');
+        workNavButton.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', (event) => {
+        if (workNavItem && !workNavItem.contains(event.target)) {
+          workNavItem.classList.remove('open');
+          workNavButton?.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          workNavItem?.classList.remove('open');
+          workNavButton?.setAttribute('aria-expanded', 'false');
+          workNavButton?.focus();
+        }
+      });
     </script>
     <script src="script.js"></script>
   </body>
 </html>
+
+
+
